@@ -30,6 +30,7 @@ use \Fastly\ObjectSerializer;
  * PopCoordinates Class Doc Comment
  *
  * @category Class
+ * @description the geographic location of the POP
  * @package  Fastly
  * @author   oss@fastly.com
  * @implements \ArrayAccess<TKey, TValue>
@@ -53,8 +54,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'x' => 'float',
-        'y' => 'float',
         'latitude' => 'float',
         'longitude' => 'float'
     ];
@@ -67,8 +66,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $fastlyFormats = [
-        'x' => null,
-        'y' => null,
         'latitude' => null,
         'longitude' => null
     ];
@@ -100,8 +97,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'x' => 'x',
-        'y' => 'y',
         'latitude' => 'latitude',
         'longitude' => 'longitude'
     ];
@@ -112,8 +107,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'x' => 'setX',
-        'y' => 'setY',
         'latitude' => 'setLatitude',
         'longitude' => 'setLongitude'
     ];
@@ -124,8 +117,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'x' => 'getX',
-        'y' => 'getY',
         'latitude' => 'getLatitude',
         'longitude' => 'getLongitude'
     ];
@@ -187,8 +178,6 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['x'] = $data['x'] ?? null;
-        $this->container['y'] = $data['y'] ?? null;
         $this->container['latitude'] = $data['latitude'] ?? null;
         $this->container['longitude'] = $data['longitude'] ?? null;
     }
@@ -202,6 +191,12 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['latitude'] === null) {
+            $invalidProperties[] = "'latitude' can't be null";
+        }
+        if ($this->container['longitude'] === null) {
+            $invalidProperties[] = "'longitude' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -218,57 +213,9 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets x
-     *
-     * @return float|null
-     */
-    public function getX()
-    {
-        return $this->container['x'];
-    }
-
-    /**
-     * Sets x
-     *
-     * @param float|null $x x
-     *
-     * @return self
-     */
-    public function setX($x)
-    {
-        $this->container['x'] = $x;
-
-        return $this;
-    }
-
-    /**
-     * Gets y
-     *
-     * @return float|null
-     */
-    public function getY()
-    {
-        return $this->container['y'];
-    }
-
-    /**
-     * Sets y
-     *
-     * @param float|null $y y
-     *
-     * @return self
-     */
-    public function setY($y)
-    {
-        $this->container['y'] = $y;
-
-        return $this;
-    }
-
-    /**
      * Gets latitude
      *
-     * @return float|null
+     * @return float
      */
     public function getLatitude()
     {
@@ -278,7 +225,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets latitude
      *
-     * @param float|null $latitude latitude
+     * @param float $latitude latitude
      *
      * @return self
      */
@@ -292,7 +239,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets longitude
      *
-     * @return float|null
+     * @return float
      */
     public function getLongitude()
     {
@@ -302,7 +249,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets longitude
      *
-     * @param float|null $longitude longitude
+     * @param float $longitude longitude
      *
      * @return self
      */
@@ -319,7 +266,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -331,7 +278,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -344,7 +291,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -360,7 +307,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -372,7 +319,7 @@ class PopCoordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

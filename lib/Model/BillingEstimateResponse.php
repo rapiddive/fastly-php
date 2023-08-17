@@ -61,7 +61,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'status' => '\Fastly\Model\BillingStatus',
         'total' => '\Fastly\Model\BillingTotal',
         'regions' => 'array<string,array<string,object>>',
-        'lines' => '\Fastly\Model\BillingEstimateResponseAllOfLines[]'
+        'line_items' => '\Fastly\Model\BillingEstimateLinesLineItems[]'
     ];
 
     /**
@@ -80,7 +80,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'status' => null,
         'total' => null,
         'regions' => null,
-        'lines' => null
+        'line_items' => null
     ];
 
     /**
@@ -118,7 +118,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'status' => 'status',
         'total' => 'total',
         'regions' => 'regions',
-        'lines' => 'lines'
+        'line_items' => 'line_items'
     ];
 
     /**
@@ -135,7 +135,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'status' => 'setStatus',
         'total' => 'setTotal',
         'regions' => 'setRegions',
-        'lines' => 'setLines'
+        'line_items' => 'setLineItems'
     ];
 
     /**
@@ -152,7 +152,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         'status' => 'getStatus',
         'total' => 'getTotal',
         'regions' => 'getRegions',
-        'lines' => 'getLines'
+        'line_items' => 'getLineItems'
     ];
 
     /**
@@ -220,7 +220,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['status'] = $data['status'] ?? null;
         $this->container['total'] = $data['total'] ?? null;
         $this->container['regions'] = $data['regions'] ?? null;
-        $this->container['lines'] = $data['lines'] ?? null;
+        $this->container['line_items'] = $data['line_items'] ?? null;
     }
 
     /**
@@ -440,25 +440,25 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
-     * Gets lines
+     * Gets line_items
      *
-     * @return \Fastly\Model\BillingEstimateResponseAllOfLines[]|null
+     * @return \Fastly\Model\BillingEstimateLinesLineItems[]|null
      */
-    public function getLines()
+    public function getLineItems()
     {
-        return $this->container['lines'];
+        return $this->container['line_items'];
     }
 
     /**
-     * Sets lines
+     * Sets line_items
      *
-     * @param \Fastly\Model\BillingEstimateResponseAllOfLines[]|null $lines lines
+     * @param \Fastly\Model\BillingEstimateLinesLineItems[]|null $line_items line_items
      *
      * @return self
      */
-    public function setLines($lines)
+    public function setLineItems($line_items)
     {
-        $this->container['lines'] = $lines;
+        $this->container['line_items'] = $line_items;
 
         return $this;
     }
@@ -469,7 +469,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -481,7 +481,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -494,7 +494,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -510,7 +510,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -522,7 +522,7 @@ class BillingEstimateResponse implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

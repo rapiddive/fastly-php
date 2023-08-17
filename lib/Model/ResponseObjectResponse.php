@@ -57,11 +57,11 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'content' => 'string',
         'content_type' => 'string',
         'name' => 'string',
-        'status' => 'int',
+        'status' => 'string',
         'response' => 'string',
         'request_condition' => 'string',
         'service_id' => 'string',
-        'version' => 'int',
+        'version' => 'string',
         'created_at' => '\DateTime',
         'deleted_at' => '\DateTime',
         'updated_at' => '\DateTime'
@@ -231,7 +231,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->container['content'] = $data['content'] ?? null;
         $this->container['content_type'] = $data['content_type'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['status'] = $data['status'] ?? 200;
+        $this->container['status'] = $data['status'] ?? '200';
         $this->container['response'] = $data['response'] ?? 'Ok';
         $this->container['request_condition'] = $data['request_condition'] ?? null;
         $this->container['service_id'] = $data['service_id'] ?? null;
@@ -364,7 +364,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets status
      *
-     * @return int|null
+     * @return string|null
      */
     public function getStatus()
     {
@@ -374,7 +374,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets status
      *
-     * @param int|null $status The HTTP status code.
+     * @param string|null $status The HTTP status code.
      *
      * @return self
      */
@@ -460,7 +460,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets version
      *
-     * @return int|null
+     * @return string|null
      */
     public function getVersion()
     {
@@ -470,7 +470,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets version
      *
-     * @param int|null $version version
+     * @param string|null $version version
      *
      * @return self
      */
@@ -559,7 +559,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -571,7 +571,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -584,7 +584,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -600,7 +600,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -612,7 +612,7 @@ class ResponseObjectResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

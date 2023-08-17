@@ -116,13 +116,16 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -141,13 +144,16 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -254,13 +260,16 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -282,13 +291,16 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -336,13 +348,16 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -471,10 +486,16 @@ class CacheSettingsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -486,6 +507,9 @@ class CacheSettingsApi
      * Delete a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -507,6 +531,9 @@ class CacheSettingsApi
      * Delete a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -617,6 +644,9 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
@@ -640,6 +670,9 @@ class CacheSettingsApi
      * Delete a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -690,6 +723,9 @@ class CacheSettingsApi
      * Create request for operation 'deleteCacheSettings'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -812,10 +848,16 @@ class CacheSettingsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -827,6 +869,9 @@ class CacheSettingsApi
      * Get a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -848,6 +893,9 @@ class CacheSettingsApi
      * Get a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -958,6 +1006,9 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
@@ -981,6 +1032,9 @@ class CacheSettingsApi
      * Get a cache settings object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1031,6 +1085,9 @@ class CacheSettingsApi
      * Create request for operation 'getCacheSettings'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1153,10 +1210,16 @@ class CacheSettingsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1168,6 +1231,9 @@ class CacheSettingsApi
      * List cache settings objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1188,6 +1254,9 @@ class CacheSettingsApi
      * List cache settings objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1297,6 +1366,9 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      *
@@ -1319,6 +1391,9 @@ class CacheSettingsApi
      * List cache settings objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1368,6 +1443,9 @@ class CacheSettingsApi
      * Create request for operation 'listCacheSettings'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1474,10 +1552,16 @@ class CacheSettingsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1490,14 +1574,17 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1516,14 +1603,17 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1630,14 +1720,17 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1659,14 +1752,17 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1714,14 +1810,17 @@ class CacheSettingsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $cache_settings_name Name for the cache settings object. (required)
      * @param  string $action If set, will cause vcl_fetch to terminate after processing this rule with the return state specified. If not set, other configuration logic in vcl_fetch with a lower priority will run after this rule. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $name Name for the cache settings object. (optional)
-     * @param  int $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
-     * @param  int $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
+     * @param  string $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as &#39;stale if error&#39;). (optional)
+     * @param  string $ttl Maximum time to consider the object fresh in the cache (the cache &#39;time to live&#39;). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1865,10 +1964,16 @@ class CacheSettingsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

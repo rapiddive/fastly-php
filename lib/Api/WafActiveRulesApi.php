@@ -110,11 +110,328 @@ class WafActiveRulesApi
     }
 
     /**
+     * Operation bulkDeleteWafActiveRules
+     *
+     * Delete multiple active rules from a WAF
+     *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
+     * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
+     * @param  int $version_id Integer identifying a service version. (required)
+     * @param  array<string,object> $request_body request_body (optional)
+     *
+     * @throws \Fastly\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     * @deprecated
+     */
+    public function bulkDeleteWafActiveRules($options)
+    {
+        $this->bulkDeleteWafActiveRulesWithHttpInfo($options);
+    }
+
+    /**
+     * Operation bulkDeleteWafActiveRulesWithHttpInfo
+     *
+     * Delete multiple active rules from a WAF
+     *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
+     * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
+     * @param  int $version_id Integer identifying a service version. (required)
+     * @param  array<string,object> $request_body (optional)
+     *
+     * @throws \Fastly\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
+     */
+    public function bulkDeleteWafActiveRulesWithHttpInfo($options)
+    {
+        $request = $this->bulkDeleteWafActiveRulesRequest($options);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            if ('DELETE' != 'GET' && 'DELETE' != 'HEAD') {
+                $header = $response->getHeader('Fastly-RateLimit-Remaining');
+                if (count($header) > 0) {
+                  $this->config->setRateLimitRemaining($header[0]);
+                }
+
+                $header = $response->getHeader('Fastly-RateLimit-Reset');
+                if (count($header) > 0) {
+                  $this->config->setRateLimitReset($header[0]);
+                }
+            } 
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation bulkDeleteWafActiveRulesAsync
+     *
+     * Delete multiple active rules from a WAF
+     *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
+     * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
+     * @param  int $version_id Integer identifying a service version. (required)
+     * @param  array<string,object> $request_body (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
+     */
+    public function bulkDeleteWafActiveRulesAsync($options)
+    {
+        return $this->bulkDeleteWafActiveRulesAsyncWithHttpInfo($options)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation bulkDeleteWafActiveRulesAsyncWithHttpInfo
+     *
+     * Delete multiple active rules from a WAF
+     *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
+     * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
+     * @param  int $version_id Integer identifying a service version. (required)
+     * @param  array<string,object> $request_body (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @deprecated
+     */
+    public function bulkDeleteWafActiveRulesAsyncWithHttpInfo($options)
+    {
+        $returnType = '';
+        $request = $this->bulkDeleteWafActiveRulesRequest($options);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'bulkDeleteWafActiveRules'
+     *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
+     * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
+     * @param  int $version_id Integer identifying a service version. (required)
+     * @param  array<string,object> $request_body (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     * @deprecated
+     */
+    public function bulkDeleteWafActiveRulesRequest($options)
+    {
+        // unbox the parameters from the associative array
+        $firewall_id = array_key_exists('firewall_id', $options) ? $options['firewall_id'] : null;
+        $version_id = array_key_exists('version_id', $options) ? $options['version_id'] : null;
+        $request_body = array_key_exists('request_body', $options) ? $options['request_body'] : null;
+
+        // verify the required parameter 'firewall_id' is set
+        if ($firewall_id === null || (is_array($firewall_id) && count($firewall_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $firewall_id when calling bulkDeleteWafActiveRules'
+            );
+        }
+        // verify the required parameter 'version_id' is set
+        if ($version_id === null || (is_array($version_id) && count($version_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $version_id when calling bulkDeleteWafActiveRules'
+            );
+        }
+
+        $resourcePath = '/waf/firewalls/{firewall_id}/versions/{version_id}/active-rules';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($firewall_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'firewall_id' . '}',
+                ObjectSerializer::toPathValue($firewall_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($version_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'version_id' . '}',
+                ObjectSerializer::toPathValue($version_id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/vnd.api+json; ext=bulk']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($request_body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request_body));
+            } else {
+                $httpBody = $request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
+            }
+        }
+
+        // this endpoint requires API token authentication
+        $apiToken = $this->config->getApiTokenWithPrefix('Fastly-Key');
+        if ($apiToken !== null) {
+            $headers['Fastly-Key'] = $apiToken;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation bulkUpdateWafActiveRules
      *
      * Update multiple active rules
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -136,6 +453,9 @@ class WafActiveRulesApi
      * Update multiple active rules
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -213,6 +533,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  \Fastly\Model\WafActiveRuleData $body (optional)
@@ -237,6 +560,9 @@ class WafActiveRulesApi
      * Update multiple active rules
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -278,6 +604,9 @@ class WafActiveRulesApi
      * Create request for operation 'bulkUpdateWafActiveRules'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -393,10 +722,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PATCH',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -408,6 +743,9 @@ class WafActiveRulesApi
      * Add a rule to a WAF as an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -430,6 +768,9 @@ class WafActiveRulesApi
      * Add a rule to a WAF as an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -541,6 +882,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  \Fastly\Model\WafActiveRule $waf_active_rule (optional)
@@ -565,6 +909,9 @@ class WafActiveRulesApi
      * Add a rule to a WAF as an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -616,6 +963,9 @@ class WafActiveRulesApi
      * Create request for operation 'createWafActiveRule'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -731,10 +1081,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -746,6 +1102,9 @@ class WafActiveRulesApi
      * Create active rules by tag
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -768,6 +1127,9 @@ class WafActiveRulesApi
      * Create active rules by tag
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -846,6 +1208,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $waf_tag_name Name of the tag. (required)
@@ -871,6 +1236,9 @@ class WafActiveRulesApi
      * Create active rules by tag
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -913,6 +1281,9 @@ class WafActiveRulesApi
      * Create request for operation 'createWafActiveRulesTag'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1044,10 +1415,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1059,6 +1436,9 @@ class WafActiveRulesApi
      * Delete an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1080,6 +1460,9 @@ class WafActiveRulesApi
      * Delete an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1157,6 +1540,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $waf_rule_id Alphanumeric string identifying a WAF rule. (required)
@@ -1181,6 +1567,9 @@ class WafActiveRulesApi
      * Delete an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1222,6 +1611,9 @@ class WafActiveRulesApi
      * Create request for operation 'deleteWafActiveRule'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1345,10 +1737,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1360,6 +1758,9 @@ class WafActiveRulesApi
      * Get an active WAF rule object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $include Include relationships. Optional, comma-separated values. Permitted values: &#x60;waf_rule_revision&#x60; and &#x60;waf_firewall_version&#x60;. (optional)
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
@@ -1383,6 +1784,9 @@ class WafActiveRulesApi
      * Get an active WAF rule object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $include Include relationships. Optional, comma-separated values. Permitted values: &#x60;waf_rule_revision&#x60; and &#x60;waf_firewall_version&#x60;. (optional)
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
@@ -1495,6 +1899,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $include Include relationships. Optional, comma-separated values. Permitted values: &#x60;waf_rule_revision&#x60; and &#x60;waf_firewall_version&#x60;. (optional)
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1520,6 +1927,9 @@ class WafActiveRulesApi
      * Get an active WAF rule object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $include Include relationships. Optional, comma-separated values. Permitted values: &#x60;waf_rule_revision&#x60; and &#x60;waf_firewall_version&#x60;. (optional)
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
@@ -1572,6 +1982,9 @@ class WafActiveRulesApi
      * Create request for operation 'getWafActiveRule'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $include Include relationships. Optional, comma-separated values. Permitted values: &#x60;waf_rule_revision&#x60; and &#x60;waf_firewall_version&#x60;. (optional)
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
@@ -1708,10 +2121,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1723,6 +2142,9 @@ class WafActiveRulesApi
      * List active rules on a WAF
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $filter_status Limit results to active rules with the specified status. (optional)
      * @param  string $filter_waf_rule_revision_message Limit results to active rules with the specified message. (optional)
@@ -1751,6 +2173,9 @@ class WafActiveRulesApi
      * List active rules on a WAF
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $filter_status Limit results to active rules with the specified status. (optional)
      * @param  string $filter_waf_rule_revision_message Limit results to active rules with the specified message. (optional)
@@ -1868,6 +2293,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_status Limit results to active rules with the specified status. (optional)
      * @param  string $filter_waf_rule_revision_message Limit results to active rules with the specified message. (optional)
      * @param  string $filter_waf_rule_revision_modsec_rule_id Limit results to active rules that represent the specified ModSecurity modsec_rule_id. (optional)
@@ -1898,6 +2326,9 @@ class WafActiveRulesApi
      * List active rules on a WAF
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $filter_status Limit results to active rules with the specified status. (optional)
      * @param  string $filter_waf_rule_revision_message Limit results to active rules with the specified message. (optional)
@@ -1955,6 +2386,9 @@ class WafActiveRulesApi
      * Create request for operation 'listWafActiveRules'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $filter_status Limit results to active rules with the specified status. (optional)
      * @param  string $filter_waf_rule_revision_message Limit results to active rules with the specified message. (optional)
@@ -2160,10 +2594,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2175,6 +2615,9 @@ class WafActiveRulesApi
      * Update an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2198,6 +2641,9 @@ class WafActiveRulesApi
      * Update an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2310,6 +2756,9 @@ class WafActiveRulesApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $waf_rule_id Alphanumeric string identifying a WAF rule. (required)
@@ -2335,6 +2784,9 @@ class WafActiveRulesApi
      * Update an active rule
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2387,6 +2839,9 @@ class WafActiveRulesApi
      * Create request for operation 'updateWafActiveRule'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $firewall_id Alphanumeric string identifying a WAF Firewall. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2518,10 +2973,16 @@ class WafActiveRulesApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PATCH',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

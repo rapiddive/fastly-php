@@ -171,8 +171,8 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$fastlyModelName;
     }
 
-    const NEGATED_0 = 0;
-    const NEGATED_1 = 1;
+    const NEGATED_disable = 0;
+    const NEGATED_enable = 1;
 
     /**
      * Gets allowable values of the enum
@@ -182,8 +182,8 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getNegatedAllowableValues()
     {
         return [
-            self::NEGATED_0,
-            self::NEGATED_1,
+            self::NEGATED_disable,
+            self::NEGATED_enable,
         ];
     }
 
@@ -202,7 +202,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['negated'] = $data['negated'] ?? self::NEGATED_0;
+        $this->container['negated'] = $data['negated'] ?? self::NEGATED_disable;
         $this->container['comment'] = $data['comment'] ?? null;
         $this->container['ip'] = $data['ip'] ?? null;
         $this->container['subnet'] = $data['subnet'] ?? null;
@@ -353,7 +353,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -365,7 +365,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -378,7 +378,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -394,7 +394,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -406,7 +406,7 @@ class AclEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

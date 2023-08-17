@@ -54,8 +54,8 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $fastlyTypes = [
         'hash' => 'string',
-        'request' => 'object',
-        'response' => 'object',
+        'request' => 'array<string,object>',
+        'response' => 'array<string,object>',
         'response_time' => 'float',
         'server' => 'string',
         'pop' => 'string'
@@ -256,7 +256,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets request
      *
-     * @return object|null
+     * @return array<string,object>|null
      */
     public function getRequest()
     {
@@ -266,7 +266,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets request
      *
-     * @param object|null $request request
+     * @param array<string,object>|null $request request
      *
      * @return self
      */
@@ -280,7 +280,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets response
      *
-     * @return object|null
+     * @return array<string,object>|null
      */
     public function getResponse()
     {
@@ -290,7 +290,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response
      *
-     * @param object|null $response response
+     * @param array<string,object>|null $response response
      *
      * @return self
      */
@@ -379,7 +379,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -391,7 +391,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -404,7 +404,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -420,7 +420,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -432,7 +432,7 @@ class Content implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

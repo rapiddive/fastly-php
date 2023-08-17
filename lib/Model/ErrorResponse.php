@@ -53,7 +53,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'errors' => '\Fastly\Model\ErrorResponseData[]'
+        'detail' => 'string',
+        'errors' => 'mixed[]',
+        'status' => 'int',
+        'title' => 'string'
     ];
 
     /**
@@ -64,7 +67,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $fastlyFormats = [
-        'errors' => null
+        'detail' => null,
+        'errors' => null,
+        'status' => null,
+        'title' => null
     ];
 
     /**
@@ -94,7 +100,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'errors' => 'errors'
+        'detail' => 'detail',
+        'errors' => 'errors',
+        'status' => 'status',
+        'title' => 'title'
     ];
 
     /**
@@ -103,7 +112,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'errors' => 'setErrors'
+        'detail' => 'setDetail',
+        'errors' => 'setErrors',
+        'status' => 'setStatus',
+        'title' => 'setTitle'
     ];
 
     /**
@@ -112,7 +124,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'errors' => 'getErrors'
+        'detail' => 'getDetail',
+        'errors' => 'getErrors',
+        'status' => 'getStatus',
+        'title' => 'getTitle'
     ];
 
     /**
@@ -172,7 +187,10 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->container['detail'] = $data['detail'] ?? null;
         $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['title'] = $data['title'] ?? null;
     }
 
     /**
@@ -200,9 +218,33 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets detail
+     *
+     * @return string|null
+     */
+    public function getDetail()
+    {
+        return $this->container['detail'];
+    }
+
+    /**
+     * Sets detail
+     *
+     * @param string|null $detail detail
+     *
+     * @return self
+     */
+    public function setDetail($detail)
+    {
+        $this->container['detail'] = $detail;
+
+        return $this;
+    }
+
+    /**
      * Gets errors
      *
-     * @return \Fastly\Model\ErrorResponseData[]|null
+     * @return mixed[]|null
      */
     public function getErrors()
     {
@@ -212,13 +254,61 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets errors
      *
-     * @param \Fastly\Model\ErrorResponseData[]|null $errors errors
+     * @param mixed[]|null $errors errors
      *
      * @return self
      */
     public function setErrors($errors)
     {
         $this->container['errors'] = $errors;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param int|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string|null $title title
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
 
         return $this;
     }
@@ -229,7 +319,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -241,7 +331,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -254,7 +344,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -270,7 +360,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -282,7 +372,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

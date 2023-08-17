@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **array&lt;string,string&gt;[]** |  | [optional] 
+**data** | [**\Fastly\Model\HistoricalFieldResultsAttributes[]**](HistoricalFieldResultsAttributes.md) |  | [optional] 
 
 
 [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

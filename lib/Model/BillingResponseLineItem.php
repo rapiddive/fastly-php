@@ -57,7 +57,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
         'deleted_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'amount' => 'float',
-        'aria_invoice_id' => 'string',
+        'aria_invoice_id' => '\Fastly\Model\LineItemDataReadOnlyInvoiceId',
         'client_service_id' => 'string',
         'credit_coupon_code' => 'string',
         'description' => 'string',
@@ -412,7 +412,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets aria_invoice_id
      *
-     * @return string|null
+     * @return \Fastly\Model\LineItemDataReadOnlyInvoiceId|null
      */
     public function getAriaInvoiceId()
     {
@@ -422,7 +422,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets aria_invoice_id
      *
-     * @param string|null $aria_invoice_id aria_invoice_id
+     * @param \Fastly\Model\LineItemDataReadOnlyInvoiceId|null $aria_invoice_id aria_invoice_id
      *
      * @return self
      */
@@ -799,7 +799,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -811,7 +811,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -824,7 +824,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -840,7 +840,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -852,7 +852,7 @@ class BillingResponseLineItem implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

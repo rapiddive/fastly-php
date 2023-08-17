@@ -116,13 +116,16 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Fastly\Model\DomainCheckItem[]
+     * @return mixed[]
      */
     public function checkDomain($options)
     {
@@ -137,13 +140,16 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Fastly\Model\DomainCheckItem[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of mixed[], HTTP status code, HTTP response headers (array of strings)
      */
     public function checkDomainWithHttpInfo($options)
     {
@@ -198,20 +204,20 @@ class DomainApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Fastly\Model\DomainCheckItem[]' === '\SplFileObject') {
+                    if ('mixed[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Fastly\Model\DomainCheckItem[]', []),
+                        ObjectSerializer::deserialize($content, 'mixed[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Fastly\Model\DomainCheckItem[]';
+            $returnType = 'mixed[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -229,7 +235,7 @@ class DomainApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Fastly\Model\DomainCheckItem[]',
+                        'mixed[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -245,6 +251,9 @@ class DomainApi
      * Validate DNS configuration for a single domain on a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -270,6 +279,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
@@ -279,7 +291,7 @@ class DomainApi
      */
     public function checkDomainAsyncWithHttpInfo($options)
     {
-        $returnType = '\Fastly\Model\DomainCheckItem[]';
+        $returnType = 'mixed[]';
         $request = $this->checkDomainRequest($options);
 
         return $this->client
@@ -319,6 +331,9 @@ class DomainApi
      * Create request for operation 'checkDomain'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -441,10 +456,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -456,6 +477,9 @@ class DomainApi
      * Validate DNS configuration for all domains on a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -476,6 +500,9 @@ class DomainApi
      * Validate DNS configuration for all domains on a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -585,6 +612,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      *
@@ -607,6 +637,9 @@ class DomainApi
      * Validate DNS configuration for all domains on a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -656,6 +689,9 @@ class DomainApi
      * Create request for operation 'checkDomains'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -762,10 +798,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -777,6 +819,9 @@ class DomainApi
      * Add a domain name to a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -799,6 +844,9 @@ class DomainApi
      * Add a domain name to a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -910,6 +958,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $comment A freeform descriptive note. (optional)
@@ -934,6 +985,9 @@ class DomainApi
      * Add a domain name to a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -985,6 +1039,9 @@ class DomainApi
      * Create request for operation 'createDomain'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1103,10 +1160,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1118,6 +1181,9 @@ class DomainApi
      * Remove a domain from a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1139,6 +1205,9 @@ class DomainApi
      * Remove a domain from a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1249,6 +1318,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
@@ -1272,6 +1344,9 @@ class DomainApi
      * Remove a domain from a service
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1322,6 +1397,9 @@ class DomainApi
      * Create request for operation 'deleteDomain'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1444,10 +1522,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1459,6 +1543,9 @@ class DomainApi
      * Describe a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1480,6 +1567,9 @@ class DomainApi
      * Describe a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1590,6 +1680,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
@@ -1613,6 +1706,9 @@ class DomainApi
      * Describe a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1663,6 +1759,9 @@ class DomainApi
      * Create request for operation 'getDomain'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1785,10 +1884,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1800,6 +1905,9 @@ class DomainApi
      * List domains
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1820,6 +1928,9 @@ class DomainApi
      * List domains
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1929,6 +2040,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      *
@@ -1951,6 +2065,9 @@ class DomainApi
      * List domains
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2000,6 +2117,9 @@ class DomainApi
      * Create request for operation 'listDomains'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2106,10 +2226,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -2121,6 +2247,9 @@ class DomainApi
      * Update a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2144,6 +2273,9 @@ class DomainApi
      * Update a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2256,6 +2388,9 @@ class DomainApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $domain_name The name of the domain or domains associated with this service. (required)
@@ -2281,6 +2416,9 @@ class DomainApi
      * Update a domain
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2333,6 +2471,9 @@ class DomainApi
      * Create request for operation 'updateDomain'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -2467,10 +2608,16 @@ class DomainApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

@@ -112,14 +112,17 @@ class ResourceApi
     /**
      * Operation createResource
      *
-     * Create a resource
+     * Create a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $name The name of the resource. (optional)
-     * @param  string $resource_id The ID of the linked resource. (optional)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -134,14 +137,17 @@ class ResourceApi
     /**
      * Operation createResourceWithHttpInfo
      *
-     * Create a resource
+     * Create a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $name The name of the resource. (optional)
-     * @param  string $resource_id The ID of the linked resource. (optional)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -244,14 +250,17 @@ class ResourceApi
     /**
      * Operation createResourceAsync
      *
-     * Create a resource
+     * Create a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $name The name of the resource. (optional)
-     * @param  string $resource_id The ID of the linked resource. (optional)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -269,14 +278,17 @@ class ResourceApi
     /**
      * Operation createResourceAsyncWithHttpInfo
      *
-     * Create a resource
+     * Create a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $name The name of the resource. (optional)
-     * @param  string $resource_id The ID of the linked resource. (optional)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -324,10 +336,13 @@ class ResourceApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $name The name of the resource. (optional)
-     * @param  string $resource_id The ID of the linked resource. (optional)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -337,8 +352,8 @@ class ResourceApi
         // unbox the parameters from the associative array
         $service_id = array_key_exists('service_id', $options) ? $options['service_id'] : null;
         $version_id = array_key_exists('version_id', $options) ? $options['version_id'] : null;
-        $name = array_key_exists('name', $options) ? $options['name'] : null;
         $resource_id = array_key_exists('resource_id', $options) ? $options['resource_id'] : null;
+        $name = array_key_exists('name', $options) ? $options['name'] : null;
 
         // verify the required parameter 'service_id' is set
         if ($service_id === null || (is_array($service_id) && count($service_id) === 0)) {
@@ -380,12 +395,12 @@ class ResourceApi
         }
 
         // form params
-        if ($name !== null) {
-            $formParams['name'] = ObjectSerializer::toFormValue($name);
-        }
-        // form params
         if ($resource_id !== null) {
             $formParams['resource_id'] = ObjectSerializer::toFormValue($resource_id);
+        }
+        // form params
+        if ($name !== null) {
+            $formParams['name'] = ObjectSerializer::toFormValue($name);
         }
 
         if ($multipart) {
@@ -441,10 +456,16 @@ class ResourceApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -453,13 +474,16 @@ class ResourceApi
     /**
      * Operation deleteResource
      *
-     * Delete a resource
+     * Delete a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -474,13 +498,16 @@ class ResourceApi
     /**
      * Operation deleteResourceWithHttpInfo
      *
-     * Delete a resource
+     * Delete a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -583,13 +610,16 @@ class ResourceApi
     /**
      * Operation deleteResourceAsync
      *
-     * Delete a resource
+     * Delete a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -607,13 +637,16 @@ class ResourceApi
     /**
      * Operation deleteResourceAsyncWithHttpInfo
      *
-     * Delete a resource
+     * Delete a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -661,9 +694,12 @@ class ResourceApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -673,7 +709,7 @@ class ResourceApi
         // unbox the parameters from the associative array
         $service_id = array_key_exists('service_id', $options) ? $options['service_id'] : null;
         $version_id = array_key_exists('version_id', $options) ? $options['version_id'] : null;
-        $resource_id = array_key_exists('resource_id', $options) ? $options['resource_id'] : null;
+        $id = array_key_exists('id', $options) ? $options['id'] : null;
 
         // verify the required parameter 'service_id' is set
         if ($service_id === null || (is_array($service_id) && count($service_id) === 0)) {
@@ -687,14 +723,14 @@ class ResourceApi
                 'Missing the required parameter $version_id when calling deleteResource'
             );
         }
-        // verify the required parameter 'resource_id' is set
-        if ($resource_id === null || (is_array($resource_id) && count($resource_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $resource_id when calling deleteResource'
+                'Missing the required parameter $id when calling deleteResource'
             );
         }
 
-        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{resource_id}';
+        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -720,10 +756,10 @@ class ResourceApi
             );
         }
         // path params
-        if ($resource_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'resource_id' . '}',
-                ObjectSerializer::toPathValue($resource_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -782,10 +818,16 @@ class ResourceApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -794,13 +836,16 @@ class ResourceApi
     /**
      * Operation getResource
      *
-     * Display a resource
+     * Display a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -815,13 +860,16 @@ class ResourceApi
     /**
      * Operation getResourceWithHttpInfo
      *
-     * Display a resource
+     * Display a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -924,13 +972,16 @@ class ResourceApi
     /**
      * Operation getResourceAsync
      *
-     * Display a resource
+     * Display a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -948,13 +999,16 @@ class ResourceApi
     /**
      * Operation getResourceAsyncWithHttpInfo
      *
-     * Display a resource
+     * Display a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1002,9 +1056,12 @@ class ResourceApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1014,7 +1071,7 @@ class ResourceApi
         // unbox the parameters from the associative array
         $service_id = array_key_exists('service_id', $options) ? $options['service_id'] : null;
         $version_id = array_key_exists('version_id', $options) ? $options['version_id'] : null;
-        $resource_id = array_key_exists('resource_id', $options) ? $options['resource_id'] : null;
+        $id = array_key_exists('id', $options) ? $options['id'] : null;
 
         // verify the required parameter 'service_id' is set
         if ($service_id === null || (is_array($service_id) && count($service_id) === 0)) {
@@ -1028,14 +1085,14 @@ class ResourceApi
                 'Missing the required parameter $version_id when calling getResource'
             );
         }
-        // verify the required parameter 'resource_id' is set
-        if ($resource_id === null || (is_array($resource_id) && count($resource_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $resource_id when calling getResource'
+                'Missing the required parameter $id when calling getResource'
             );
         }
 
-        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{resource_id}';
+        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1061,10 +1118,10 @@ class ResourceApi
             );
         }
         // path params
-        if ($resource_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'resource_id' . '}',
-                ObjectSerializer::toPathValue($resource_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -1123,10 +1180,16 @@ class ResourceApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1135,9 +1198,12 @@ class ResourceApi
     /**
      * Operation listResources
      *
-     * List resources
+     * List resource links
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1155,9 +1221,12 @@ class ResourceApi
     /**
      * Operation listResourcesWithHttpInfo
      *
-     * List resources
+     * List resource links
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1263,9 +1332,12 @@ class ResourceApi
     /**
      * Operation listResourcesAsync
      *
-     * List resources
+     * List resource links
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1286,9 +1358,12 @@ class ResourceApi
     /**
      * Operation listResourcesAsyncWithHttpInfo
      *
-     * List resources
+     * List resource links
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1338,6 +1413,9 @@ class ResourceApi
      * Create request for operation 'listResources'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1444,10 +1522,16 @@ class ResourceApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1456,14 +1540,18 @@ class ResourceApi
     /**
      * Operation updateResource
      *
-     * Update a resource
+     * Update a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
-     * @param  string $name The name of the resource. (optional)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1478,14 +1566,18 @@ class ResourceApi
     /**
      * Operation updateResourceWithHttpInfo
      *
-     * Update a resource
+     * Update a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
-     * @param  string $name The name of the resource. (optional)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1588,14 +1680,18 @@ class ResourceApi
     /**
      * Operation updateResourceAsync
      *
-     * Update a resource
+     * Update a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
-     * @param  string $name The name of the resource. (optional)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1613,14 +1709,18 @@ class ResourceApi
     /**
      * Operation updateResourceAsyncWithHttpInfo
      *
-     * Update a resource
+     * Update a resource link
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
-     * @param  string $name The name of the resource. (optional)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1668,10 +1768,14 @@ class ResourceApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
-     * @param  string $resource_id An alphanumeric string identifying the resource. (required)
-     * @param  string $name The name of the resource. (optional)
+     * @param  string $id An alphanumeric string identifying the resource link. (required)
+     * @param  string $resource_id The ID of the underlying linked resource. (optional)
+     * @param  string $name The name of the resource link. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1681,6 +1785,7 @@ class ResourceApi
         // unbox the parameters from the associative array
         $service_id = array_key_exists('service_id', $options) ? $options['service_id'] : null;
         $version_id = array_key_exists('version_id', $options) ? $options['version_id'] : null;
+        $id = array_key_exists('id', $options) ? $options['id'] : null;
         $resource_id = array_key_exists('resource_id', $options) ? $options['resource_id'] : null;
         $name = array_key_exists('name', $options) ? $options['name'] : null;
 
@@ -1696,14 +1801,14 @@ class ResourceApi
                 'Missing the required parameter $version_id when calling updateResource'
             );
         }
-        // verify the required parameter 'resource_id' is set
-        if ($resource_id === null || (is_array($resource_id) && count($resource_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $resource_id when calling updateResource'
+                'Missing the required parameter $id when calling updateResource'
             );
         }
 
-        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{resource_id}';
+        $resourcePath = '/service/{service_id}/version/{version_id}/resource/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1729,14 +1834,18 @@ class ResourceApi
             );
         }
         // path params
-        if ($resource_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'resource_id' . '}',
-                ObjectSerializer::toPathValue($resource_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
 
+        // form params
+        if ($resource_id !== null) {
+            $formParams['resource_id'] = ObjectSerializer::toFormValue($resource_id);
+        }
         // form params
         if ($name !== null) {
             $formParams['name'] = ObjectSerializer::toFormValue($name);
@@ -1795,10 +1904,16 @@ class ResourceApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

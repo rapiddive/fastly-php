@@ -116,20 +116,23 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -148,20 +151,23 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -268,20 +274,23 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -303,20 +312,23 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -364,20 +376,23 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -390,15 +405,15 @@ class HeaderApi
         $action = array_key_exists('action', $options) ? $options['action'] : null;
         $cache_condition = array_key_exists('cache_condition', $options) ? $options['cache_condition'] : null;
         $dst = array_key_exists('dst', $options) ? $options['dst'] : null;
-        $ignore_if_set = array_key_exists('ignore_if_set', $options) ? $options['ignore_if_set'] : null;
         $name = array_key_exists('name', $options) ? $options['name'] : null;
-        $priority = array_key_exists('priority', $options) ? $options['priority'] : 100;
         $regex = array_key_exists('regex', $options) ? $options['regex'] : null;
         $request_condition = array_key_exists('request_condition', $options) ? $options['request_condition'] : null;
         $response_condition = array_key_exists('response_condition', $options) ? $options['response_condition'] : null;
         $src = array_key_exists('src', $options) ? $options['src'] : null;
         $substitution = array_key_exists('substitution', $options) ? $options['substitution'] : null;
         $type = array_key_exists('type', $options) ? $options['type'] : null;
+        $ignore_if_set = array_key_exists('ignore_if_set', $options) ? $options['ignore_if_set'] : null;
+        $priority = array_key_exists('priority', $options) ? $options['priority'] : 100;
 
         // verify the required parameter 'service_id' is set
         if ($service_id === null || (is_array($service_id) && count($service_id) === 0)) {
@@ -452,16 +467,8 @@ class HeaderApi
             $formParams['dst'] = ObjectSerializer::toFormValue($dst);
         }
         // form params
-        if ($ignore_if_set !== null) {
-            $formParams['ignore_if_set'] = ObjectSerializer::toFormValue($ignore_if_set);
-        }
-        // form params
         if ($name !== null) {
             $formParams['name'] = ObjectSerializer::toFormValue($name);
-        }
-        // form params
-        if ($priority !== null) {
-            $formParams['priority'] = ObjectSerializer::toFormValue($priority);
         }
         // form params
         if ($regex !== null) {
@@ -486,6 +493,14 @@ class HeaderApi
         // form params
         if ($type !== null) {
             $formParams['type'] = ObjectSerializer::toFormValue($type);
+        }
+        // form params
+        if ($ignore_if_set !== null) {
+            $formParams['ignore_if_set'] = ObjectSerializer::toFormValue($ignore_if_set);
+        }
+        // form params
+        if ($priority !== null) {
+            $formParams['priority'] = ObjectSerializer::toFormValue($priority);
         }
 
         if ($multipart) {
@@ -541,10 +556,16 @@ class HeaderApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -556,6 +577,9 @@ class HeaderApi
      * Delete a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -577,6 +601,9 @@ class HeaderApi
      * Delete a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -687,6 +714,9 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
@@ -710,6 +740,9 @@ class HeaderApi
      * Delete a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -760,6 +793,9 @@ class HeaderApi
      * Create request for operation 'deleteHeaderObject'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -882,10 +918,16 @@ class HeaderApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -897,6 +939,9 @@ class HeaderApi
      * Get a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -918,6 +963,9 @@ class HeaderApi
      * Get a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1028,6 +1076,9 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
@@ -1051,6 +1102,9 @@ class HeaderApi
      * Get a Header object
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1101,6 +1155,9 @@ class HeaderApi
      * Create request for operation 'getHeaderObject'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1223,10 +1280,16 @@ class HeaderApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1238,6 +1301,9 @@ class HeaderApi
      * List Header objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1258,6 +1324,9 @@ class HeaderApi
      * List Header objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1367,6 +1436,9 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      *
@@ -1389,6 +1461,9 @@ class HeaderApi
      * List Header objects
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1438,6 +1513,9 @@ class HeaderApi
      * Create request for operation 'listHeaderObjects'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
@@ -1544,10 +1622,16 @@ class HeaderApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1560,21 +1644,24 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1593,21 +1680,24 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \Fastly\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1714,21 +1804,24 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1750,21 +1843,24 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1812,21 +1908,24 @@ class HeaderApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $service_id Alphanumeric string identifying the service. (required)
      * @param  int $version_id Integer identifying a service version. (required)
      * @param  string $header_name A handle to refer to this Header object. (required)
      * @param  string $action Accepts a string value. (optional)
      * @param  string $cache_condition Name of the cache condition controlling when this configuration applies. (optional)
      * @param  string $dst Header to set. (optional)
-     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
      * @param  string $name A handle to refer to this Header object. (optional)
-     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      * @param  string $regex Regular expression to use. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $request_condition Condition which, if met, will select this configuration during a request. Optional. (optional)
      * @param  string $response_condition Optional name of a response condition to apply. (optional)
      * @param  string $src Variable to be used as a source for the header content. Does not apply to &#x60;delete&#x60; action. (optional)
      * @param  string $substitution Value to substitute in place of regular expression. Only applies to &#x60;regex&#x60; and &#x60;regex_repeat&#x60; actions. (optional)
      * @param  string $type Accepts a string value. (optional)
+     * @param  int $ignore_if_set Don&#39;t add the header if it is added already. Only applies to &#39;set&#39; action. (optional)
+     * @param  int $priority Priority determines execution order. Lower numbers execute first. (optional, default to 100)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1840,15 +1939,15 @@ class HeaderApi
         $action = array_key_exists('action', $options) ? $options['action'] : null;
         $cache_condition = array_key_exists('cache_condition', $options) ? $options['cache_condition'] : null;
         $dst = array_key_exists('dst', $options) ? $options['dst'] : null;
-        $ignore_if_set = array_key_exists('ignore_if_set', $options) ? $options['ignore_if_set'] : null;
         $name = array_key_exists('name', $options) ? $options['name'] : null;
-        $priority = array_key_exists('priority', $options) ? $options['priority'] : 100;
         $regex = array_key_exists('regex', $options) ? $options['regex'] : null;
         $request_condition = array_key_exists('request_condition', $options) ? $options['request_condition'] : null;
         $response_condition = array_key_exists('response_condition', $options) ? $options['response_condition'] : null;
         $src = array_key_exists('src', $options) ? $options['src'] : null;
         $substitution = array_key_exists('substitution', $options) ? $options['substitution'] : null;
         $type = array_key_exists('type', $options) ? $options['type'] : null;
+        $ignore_if_set = array_key_exists('ignore_if_set', $options) ? $options['ignore_if_set'] : null;
+        $priority = array_key_exists('priority', $options) ? $options['priority'] : 100;
 
         // verify the required parameter 'service_id' is set
         if ($service_id === null || (is_array($service_id) && count($service_id) === 0)) {
@@ -1916,16 +2015,8 @@ class HeaderApi
             $formParams['dst'] = ObjectSerializer::toFormValue($dst);
         }
         // form params
-        if ($ignore_if_set !== null) {
-            $formParams['ignore_if_set'] = ObjectSerializer::toFormValue($ignore_if_set);
-        }
-        // form params
         if ($name !== null) {
             $formParams['name'] = ObjectSerializer::toFormValue($name);
-        }
-        // form params
-        if ($priority !== null) {
-            $formParams['priority'] = ObjectSerializer::toFormValue($priority);
         }
         // form params
         if ($regex !== null) {
@@ -1950,6 +2041,14 @@ class HeaderApi
         // form params
         if ($type !== null) {
             $formParams['type'] = ObjectSerializer::toFormValue($type);
+        }
+        // form params
+        if ($ignore_if_set !== null) {
+            $formParams['ignore_if_set'] = ObjectSerializer::toFormValue($ignore_if_set);
+        }
+        // form params
+        if ($priority !== null) {
+            $formParams['priority'] = ObjectSerializer::toFormValue($priority);
         }
 
         if ($multipart) {
@@ -2005,10 +2104,16 @@ class HeaderApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

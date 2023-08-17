@@ -204,6 +204,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'segblock_shield_fetches' => 'int',
         'compute_requests' => 'int',
         'compute_request_time_ms' => 'float',
+        'compute_request_time_billed_ms' => 'float',
         'compute_ram_used' => 'int',
         'compute_execution_time_ms' => 'float',
         'compute_req_header_bytes' => 'int',
@@ -250,8 +251,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'websocket_conn_time_ms' => 'int',
         'fanout_recv_publishes' => 'int',
         'fanout_send_publishes' => 'int',
-        'object_store_read_requests' => 'int',
-        'object_store_write_requests' => 'int',
+        'kv_store_class_a_operations' => 'int',
+        'kv_store_class_b_operations' => 'int',
+        'object_store_class_a_operations' => 'int',
+        'object_store_class_b_operations' => 'int',
         'fanout_req_header_bytes' => 'int',
         'fanout_req_body_bytes' => 'int',
         'fanout_resp_header_bytes' => 'int',
@@ -260,7 +263,13 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'fanout_bereq_body_bytes' => 'int',
         'fanout_beresp_header_bytes' => 'int',
         'fanout_beresp_body_bytes' => 'int',
-        'fanout_conn_time_ms' => 'int'
+        'fanout_conn_time_ms' => 'int',
+        'ddos_action_limit_streams_connections' => 'int',
+        'ddos_action_limit_streams_requests' => 'int',
+        'ddos_action_tarpit_accept' => 'int',
+        'ddos_action_tarpit' => 'int',
+        'ddos_action_close' => 'int',
+        'ddos_action_blackhole' => 'int'
     ];
 
     /**
@@ -421,6 +430,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'segblock_shield_fetches' => null,
         'compute_requests' => null,
         'compute_request_time_ms' => null,
+        'compute_request_time_billed_ms' => null,
         'compute_ram_used' => null,
         'compute_execution_time_ms' => null,
         'compute_req_header_bytes' => null,
@@ -467,8 +477,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'websocket_conn_time_ms' => null,
         'fanout_recv_publishes' => null,
         'fanout_send_publishes' => null,
-        'object_store_read_requests' => null,
-        'object_store_write_requests' => null,
+        'kv_store_class_a_operations' => null,
+        'kv_store_class_b_operations' => null,
+        'object_store_class_a_operations' => null,
+        'object_store_class_b_operations' => null,
         'fanout_req_header_bytes' => null,
         'fanout_req_body_bytes' => null,
         'fanout_resp_header_bytes' => null,
@@ -477,7 +489,13 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'fanout_bereq_body_bytes' => null,
         'fanout_beresp_header_bytes' => null,
         'fanout_beresp_body_bytes' => null,
-        'fanout_conn_time_ms' => null
+        'fanout_conn_time_ms' => null,
+        'ddos_action_limit_streams_connections' => null,
+        'ddos_action_limit_streams_requests' => null,
+        'ddos_action_tarpit_accept' => null,
+        'ddos_action_tarpit' => null,
+        'ddos_action_close' => null,
+        'ddos_action_blackhole' => null
     ];
 
     /**
@@ -657,6 +675,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'segblock_shield_fetches' => 'segblock_shield_fetches',
         'compute_requests' => 'compute_requests',
         'compute_request_time_ms' => 'compute_request_time_ms',
+        'compute_request_time_billed_ms' => 'compute_request_time_billed_ms',
         'compute_ram_used' => 'compute_ram_used',
         'compute_execution_time_ms' => 'compute_execution_time_ms',
         'compute_req_header_bytes' => 'compute_req_header_bytes',
@@ -703,8 +722,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'websocket_conn_time_ms' => 'websocket_conn_time_ms',
         'fanout_recv_publishes' => 'fanout_recv_publishes',
         'fanout_send_publishes' => 'fanout_send_publishes',
-        'object_store_read_requests' => 'object_store_read_requests',
-        'object_store_write_requests' => 'object_store_write_requests',
+        'kv_store_class_a_operations' => 'kv_store_class_a_operations',
+        'kv_store_class_b_operations' => 'kv_store_class_b_operations',
+        'object_store_class_a_operations' => 'object_store_class_a_operations',
+        'object_store_class_b_operations' => 'object_store_class_b_operations',
         'fanout_req_header_bytes' => 'fanout_req_header_bytes',
         'fanout_req_body_bytes' => 'fanout_req_body_bytes',
         'fanout_resp_header_bytes' => 'fanout_resp_header_bytes',
@@ -713,7 +734,13 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'fanout_bereq_body_bytes' => 'fanout_bereq_body_bytes',
         'fanout_beresp_header_bytes' => 'fanout_beresp_header_bytes',
         'fanout_beresp_body_bytes' => 'fanout_beresp_body_bytes',
-        'fanout_conn_time_ms' => 'fanout_conn_time_ms'
+        'fanout_conn_time_ms' => 'fanout_conn_time_ms',
+        'ddos_action_limit_streams_connections' => 'ddos_action_limit_streams_connections',
+        'ddos_action_limit_streams_requests' => 'ddos_action_limit_streams_requests',
+        'ddos_action_tarpit_accept' => 'ddos_action_tarpit_accept',
+        'ddos_action_tarpit' => 'ddos_action_tarpit',
+        'ddos_action_close' => 'ddos_action_close',
+        'ddos_action_blackhole' => 'ddos_action_blackhole'
     ];
 
     /**
@@ -872,6 +899,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'segblock_shield_fetches' => 'setSegblockShieldFetches',
         'compute_requests' => 'setComputeRequests',
         'compute_request_time_ms' => 'setComputeRequestTimeMs',
+        'compute_request_time_billed_ms' => 'setComputeRequestTimeBilledMs',
         'compute_ram_used' => 'setComputeRamUsed',
         'compute_execution_time_ms' => 'setComputeExecutionTimeMs',
         'compute_req_header_bytes' => 'setComputeReqHeaderBytes',
@@ -918,8 +946,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'websocket_conn_time_ms' => 'setWebsocketConnTimeMs',
         'fanout_recv_publishes' => 'setFanoutRecvPublishes',
         'fanout_send_publishes' => 'setFanoutSendPublishes',
-        'object_store_read_requests' => 'setObjectStoreReadRequests',
-        'object_store_write_requests' => 'setObjectStoreWriteRequests',
+        'kv_store_class_a_operations' => 'setKvStoreClassAOperations',
+        'kv_store_class_b_operations' => 'setKvStoreClassBOperations',
+        'object_store_class_a_operations' => 'setObjectStoreClassAOperations',
+        'object_store_class_b_operations' => 'setObjectStoreClassBOperations',
         'fanout_req_header_bytes' => 'setFanoutReqHeaderBytes',
         'fanout_req_body_bytes' => 'setFanoutReqBodyBytes',
         'fanout_resp_header_bytes' => 'setFanoutRespHeaderBytes',
@@ -928,7 +958,13 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'fanout_bereq_body_bytes' => 'setFanoutBereqBodyBytes',
         'fanout_beresp_header_bytes' => 'setFanoutBerespHeaderBytes',
         'fanout_beresp_body_bytes' => 'setFanoutBerespBodyBytes',
-        'fanout_conn_time_ms' => 'setFanoutConnTimeMs'
+        'fanout_conn_time_ms' => 'setFanoutConnTimeMs',
+        'ddos_action_limit_streams_connections' => 'setDdosActionLimitStreamsConnections',
+        'ddos_action_limit_streams_requests' => 'setDdosActionLimitStreamsRequests',
+        'ddos_action_tarpit_accept' => 'setDdosActionTarpitAccept',
+        'ddos_action_tarpit' => 'setDdosActionTarpit',
+        'ddos_action_close' => 'setDdosActionClose',
+        'ddos_action_blackhole' => 'setDdosActionBlackhole'
     ];
 
     /**
@@ -1087,6 +1123,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'segblock_shield_fetches' => 'getSegblockShieldFetches',
         'compute_requests' => 'getComputeRequests',
         'compute_request_time_ms' => 'getComputeRequestTimeMs',
+        'compute_request_time_billed_ms' => 'getComputeRequestTimeBilledMs',
         'compute_ram_used' => 'getComputeRamUsed',
         'compute_execution_time_ms' => 'getComputeExecutionTimeMs',
         'compute_req_header_bytes' => 'getComputeReqHeaderBytes',
@@ -1133,8 +1170,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'websocket_conn_time_ms' => 'getWebsocketConnTimeMs',
         'fanout_recv_publishes' => 'getFanoutRecvPublishes',
         'fanout_send_publishes' => 'getFanoutSendPublishes',
-        'object_store_read_requests' => 'getObjectStoreReadRequests',
-        'object_store_write_requests' => 'getObjectStoreWriteRequests',
+        'kv_store_class_a_operations' => 'getKvStoreClassAOperations',
+        'kv_store_class_b_operations' => 'getKvStoreClassBOperations',
+        'object_store_class_a_operations' => 'getObjectStoreClassAOperations',
+        'object_store_class_b_operations' => 'getObjectStoreClassBOperations',
         'fanout_req_header_bytes' => 'getFanoutReqHeaderBytes',
         'fanout_req_body_bytes' => 'getFanoutReqBodyBytes',
         'fanout_resp_header_bytes' => 'getFanoutRespHeaderBytes',
@@ -1143,7 +1182,13 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         'fanout_bereq_body_bytes' => 'getFanoutBereqBodyBytes',
         'fanout_beresp_header_bytes' => 'getFanoutBerespHeaderBytes',
         'fanout_beresp_body_bytes' => 'getFanoutBerespBodyBytes',
-        'fanout_conn_time_ms' => 'getFanoutConnTimeMs'
+        'fanout_conn_time_ms' => 'getFanoutConnTimeMs',
+        'ddos_action_limit_streams_connections' => 'getDdosActionLimitStreamsConnections',
+        'ddos_action_limit_streams_requests' => 'getDdosActionLimitStreamsRequests',
+        'ddos_action_tarpit_accept' => 'getDdosActionTarpitAccept',
+        'ddos_action_tarpit' => 'getDdosActionTarpit',
+        'ddos_action_close' => 'getDdosActionClose',
+        'ddos_action_blackhole' => 'getDdosActionBlackhole'
     ];
 
     /**
@@ -1353,6 +1398,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['segblock_shield_fetches'] = $data['segblock_shield_fetches'] ?? null;
         $this->container['compute_requests'] = $data['compute_requests'] ?? null;
         $this->container['compute_request_time_ms'] = $data['compute_request_time_ms'] ?? null;
+        $this->container['compute_request_time_billed_ms'] = $data['compute_request_time_billed_ms'] ?? null;
         $this->container['compute_ram_used'] = $data['compute_ram_used'] ?? null;
         $this->container['compute_execution_time_ms'] = $data['compute_execution_time_ms'] ?? null;
         $this->container['compute_req_header_bytes'] = $data['compute_req_header_bytes'] ?? null;
@@ -1399,8 +1445,10 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['websocket_conn_time_ms'] = $data['websocket_conn_time_ms'] ?? null;
         $this->container['fanout_recv_publishes'] = $data['fanout_recv_publishes'] ?? null;
         $this->container['fanout_send_publishes'] = $data['fanout_send_publishes'] ?? null;
-        $this->container['object_store_read_requests'] = $data['object_store_read_requests'] ?? null;
-        $this->container['object_store_write_requests'] = $data['object_store_write_requests'] ?? null;
+        $this->container['kv_store_class_a_operations'] = $data['kv_store_class_a_operations'] ?? null;
+        $this->container['kv_store_class_b_operations'] = $data['kv_store_class_b_operations'] ?? null;
+        $this->container['object_store_class_a_operations'] = $data['object_store_class_a_operations'] ?? null;
+        $this->container['object_store_class_b_operations'] = $data['object_store_class_b_operations'] ?? null;
         $this->container['fanout_req_header_bytes'] = $data['fanout_req_header_bytes'] ?? null;
         $this->container['fanout_req_body_bytes'] = $data['fanout_req_body_bytes'] ?? null;
         $this->container['fanout_resp_header_bytes'] = $data['fanout_resp_header_bytes'] ?? null;
@@ -1410,6 +1458,12 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['fanout_beresp_header_bytes'] = $data['fanout_beresp_header_bytes'] ?? null;
         $this->container['fanout_beresp_body_bytes'] = $data['fanout_beresp_body_bytes'] ?? null;
         $this->container['fanout_conn_time_ms'] = $data['fanout_conn_time_ms'] ?? null;
+        $this->container['ddos_action_limit_streams_connections'] = $data['ddos_action_limit_streams_connections'] ?? null;
+        $this->container['ddos_action_limit_streams_requests'] = $data['ddos_action_limit_streams_requests'] ?? null;
+        $this->container['ddos_action_tarpit_accept'] = $data['ddos_action_tarpit_accept'] ?? null;
+        $this->container['ddos_action_tarpit'] = $data['ddos_action_tarpit'] ?? null;
+        $this->container['ddos_action_close'] = $data['ddos_action_close'] ?? null;
+        $this->container['ddos_action_blackhole'] = $data['ddos_action_blackhole'] ?? null;
     }
 
     /**
@@ -1689,7 +1743,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bandwidth
      *
-     * @param int|null $bandwidth Total bytes delivered (`resp_header_bytes` + `resp_body_bytes` + `bereq_header_bytes` + `bereq_body_bytes` + `compute_resp_header_bytes` + `compute_resp_body_bytes` + `compute_bereq_header_bytes` + `compute_bereq_body_bytes` + `websocket_resp_header_bytes` + `websocket_resp_body_bytes` + `websocket_bereq_header_bytes` + `websocket_bereq_body_bytes`).
+     * @param int|null $bandwidth Total bytes delivered (`resp_header_bytes` + `resp_body_bytes` + `bereq_header_bytes` + `bereq_body_bytes` + `compute_resp_header_bytes` + `compute_resp_body_bytes` + `compute_bereq_header_bytes` + `compute_bereq_body_bytes` + `websocket_resp_header_bytes` + `websocket_resp_body_bytes` + `websocket_bereq_header_bytes` + `websocket_bereq_body_bytes` + `fanout_resp_header_bytes` + `fanout_resp_body_bytes` + `fanout_bereq_header_bytes` + `fanout_bereq_body_bytes`).
      *
      * @return self
      */
@@ -5037,6 +5091,30 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets compute_request_time_billed_ms
+     *
+     * @return float|null
+     */
+    public function getComputeRequestTimeBilledMs()
+    {
+        return $this->container['compute_request_time_billed_ms'];
+    }
+
+    /**
+     * Sets compute_request_time_billed_ms
+     *
+     * @param float|null $compute_request_time_billed_ms The total amount of request processing time you will be billed for, measured in 50 millisecond increments.
+     *
+     * @return self
+     */
+    public function setComputeRequestTimeBilledMs($compute_request_time_billed_ms)
+    {
+        $this->container['compute_request_time_billed_ms'] = $compute_request_time_billed_ms;
+
+        return $this;
+    }
+
+    /**
      * Gets compute_ram_used
      *
      * @return int|null
@@ -6141,49 +6219,101 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets object_store_read_requests
+     * Gets kv_store_class_a_operations
      *
      * @return int|null
      */
-    public function getObjectStoreReadRequests()
+    public function getKvStoreClassAOperations()
     {
-        return $this->container['object_store_read_requests'];
+        return $this->container['kv_store_class_a_operations'];
     }
 
     /**
-     * Sets object_store_read_requests
+     * Sets kv_store_class_a_operations
      *
-     * @param int|null $object_store_read_requests The total number of reads received for the object store.
+     * @param int|null $kv_store_class_a_operations The total number of class a operations for the KV store.
      *
      * @return self
      */
-    public function setObjectStoreReadRequests($object_store_read_requests)
+    public function setKvStoreClassAOperations($kv_store_class_a_operations)
     {
-        $this->container['object_store_read_requests'] = $object_store_read_requests;
+        $this->container['kv_store_class_a_operations'] = $kv_store_class_a_operations;
 
         return $this;
     }
 
     /**
-     * Gets object_store_write_requests
+     * Gets kv_store_class_b_operations
      *
      * @return int|null
      */
-    public function getObjectStoreWriteRequests()
+    public function getKvStoreClassBOperations()
     {
-        return $this->container['object_store_write_requests'];
+        return $this->container['kv_store_class_b_operations'];
     }
 
     /**
-     * Sets object_store_write_requests
+     * Sets kv_store_class_b_operations
      *
-     * @param int|null $object_store_write_requests The total number of writes received for the object store.
+     * @param int|null $kv_store_class_b_operations The total number of class b operations for the KV store.
      *
      * @return self
      */
-    public function setObjectStoreWriteRequests($object_store_write_requests)
+    public function setKvStoreClassBOperations($kv_store_class_b_operations)
     {
-        $this->container['object_store_write_requests'] = $object_store_write_requests;
+        $this->container['kv_store_class_b_operations'] = $kv_store_class_b_operations;
+
+        return $this;
+    }
+
+    /**
+     * Gets object_store_class_a_operations
+     *
+     * @return int|null
+     * @deprecated
+     */
+    public function getObjectStoreClassAOperations()
+    {
+        return $this->container['object_store_class_a_operations'];
+    }
+
+    /**
+     * Sets object_store_class_a_operations
+     *
+     * @param int|null $object_store_class_a_operations Use kv_store_class_a_operations.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setObjectStoreClassAOperations($object_store_class_a_operations)
+    {
+        $this->container['object_store_class_a_operations'] = $object_store_class_a_operations;
+
+        return $this;
+    }
+
+    /**
+     * Gets object_store_class_b_operations
+     *
+     * @return int|null
+     * @deprecated
+     */
+    public function getObjectStoreClassBOperations()
+    {
+        return $this->container['object_store_class_b_operations'];
+    }
+
+    /**
+     * Sets object_store_class_b_operations
+     *
+     * @param int|null $object_store_class_b_operations Use kv_store_class_b_operations.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setObjectStoreClassBOperations($object_store_class_b_operations)
+    {
+        $this->container['object_store_class_b_operations'] = $object_store_class_b_operations;
 
         return $this;
     }
@@ -6403,6 +6533,150 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
+    /**
+     * Gets ddos_action_limit_streams_connections
+     *
+     * @return int|null
+     */
+    public function getDdosActionLimitStreamsConnections()
+    {
+        return $this->container['ddos_action_limit_streams_connections'];
+    }
+
+    /**
+     * Sets ddos_action_limit_streams_connections
+     *
+     * @param int|null $ddos_action_limit_streams_connections For HTTP/2, the number of connections the limit-streams action was applied to. The limit-streams action caps the allowed number of concurrent streams in a connection.
+     *
+     * @return self
+     */
+    public function setDdosActionLimitStreamsConnections($ddos_action_limit_streams_connections)
+    {
+        $this->container['ddos_action_limit_streams_connections'] = $ddos_action_limit_streams_connections;
+
+        return $this;
+    }
+
+    /**
+     * Gets ddos_action_limit_streams_requests
+     *
+     * @return int|null
+     */
+    public function getDdosActionLimitStreamsRequests()
+    {
+        return $this->container['ddos_action_limit_streams_requests'];
+    }
+
+    /**
+     * Sets ddos_action_limit_streams_requests
+     *
+     * @param int|null $ddos_action_limit_streams_requests For HTTP/2, the number of requests made on a connection for which the limit-streams action was taken. The limit-streams action caps the allowed number of concurrent streams in a connection.
+     *
+     * @return self
+     */
+    public function setDdosActionLimitStreamsRequests($ddos_action_limit_streams_requests)
+    {
+        $this->container['ddos_action_limit_streams_requests'] = $ddos_action_limit_streams_requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets ddos_action_tarpit_accept
+     *
+     * @return int|null
+     */
+    public function getDdosActionTarpitAccept()
+    {
+        return $this->container['ddos_action_tarpit_accept'];
+    }
+
+    /**
+     * Sets ddos_action_tarpit_accept
+     *
+     * @param int|null $ddos_action_tarpit_accept The number of times the tarpit-accept action was taken. The tarpit-accept action adds a delay when accepting future connections.
+     *
+     * @return self
+     */
+    public function setDdosActionTarpitAccept($ddos_action_tarpit_accept)
+    {
+        $this->container['ddos_action_tarpit_accept'] = $ddos_action_tarpit_accept;
+
+        return $this;
+    }
+
+    /**
+     * Gets ddos_action_tarpit
+     *
+     * @return int|null
+     */
+    public function getDdosActionTarpit()
+    {
+        return $this->container['ddos_action_tarpit'];
+    }
+
+    /**
+     * Sets ddos_action_tarpit
+     *
+     * @param int|null $ddos_action_tarpit The number of times the tarpit action was taken. The tarpit action delays writing the response to the client.
+     *
+     * @return self
+     */
+    public function setDdosActionTarpit($ddos_action_tarpit)
+    {
+        $this->container['ddos_action_tarpit'] = $ddos_action_tarpit;
+
+        return $this;
+    }
+
+    /**
+     * Gets ddos_action_close
+     *
+     * @return int|null
+     */
+    public function getDdosActionClose()
+    {
+        return $this->container['ddos_action_close'];
+    }
+
+    /**
+     * Sets ddos_action_close
+     *
+     * @param int|null $ddos_action_close The number of times the close action was taken. The close action aborts the connection as soon as possible. The close action takes effect either right after accept, right after the client hello, or right after the response was sent.
+     *
+     * @return self
+     */
+    public function setDdosActionClose($ddos_action_close)
+    {
+        $this->container['ddos_action_close'] = $ddos_action_close;
+
+        return $this;
+    }
+
+    /**
+     * Gets ddos_action_blackhole
+     *
+     * @return int|null
+     */
+    public function getDdosActionBlackhole()
+    {
+        return $this->container['ddos_action_blackhole'];
+    }
+
+    /**
+     * Sets ddos_action_blackhole
+     *
+     * @param int|null $ddos_action_blackhole The number of times the blackhole action was taken. The blackhole action quietly closes a TCP connection without sending a reset. The blackhole action quietly closes a TCP connection without notifying its peer (all TCP state is dropped).
+     *
+     * @return self
+     */
+    public function setDdosActionBlackhole($ddos_action_blackhole)
+    {
+        $this->container['ddos_action_blackhole'] = $ddos_action_blackhole;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -6410,7 +6684,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -6422,7 +6696,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -6435,7 +6709,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -6451,7 +6725,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -6463,7 +6737,7 @@ class Results implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

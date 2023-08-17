@@ -54,11 +54,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'msg' => 'string',
-        'status' => 'string',
-        'errors' => 'string[]',
-        'warnings' => 'string[]',
-        'messages' => '\Fastly\Model\ValidatorResultMessages[]'
+        'data' => '\Fastly\Model\ValidatorResultData'
     ];
 
     /**
@@ -69,11 +65,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $fastlyFormats = [
-        'msg' => null,
-        'status' => null,
-        'errors' => null,
-        'warnings' => null,
-        'messages' => null
+        'data' => null
     ];
 
     /**
@@ -103,11 +95,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'msg' => 'msg',
-        'status' => 'status',
-        'errors' => 'errors',
-        'warnings' => 'warnings',
-        'messages' => 'messages'
+        'data' => 'data'
     ];
 
     /**
@@ -116,11 +104,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'msg' => 'setMsg',
-        'status' => 'setStatus',
-        'errors' => 'setErrors',
-        'warnings' => 'setWarnings',
-        'messages' => 'setMessages'
+        'data' => 'setData'
     ];
 
     /**
@@ -129,11 +113,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'msg' => 'getMsg',
-        'status' => 'getStatus',
-        'errors' => 'getErrors',
-        'warnings' => 'getWarnings',
-        'messages' => 'getMessages'
+        'data' => 'getData'
     ];
 
     /**
@@ -177,21 +157,6 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$fastlyModelName;
     }
 
-    const STATUS_ERROR = 'error';
-    const STATUS_OK = 'ok';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ERROR,
-            self::STATUS_OK,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -208,11 +173,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['msg'] = $data['msg'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['errors'] = $data['errors'] ?? null;
-        $this->container['warnings'] = $data['warnings'] ?? null;
-        $this->container['messages'] = $data['messages'] ?? null;
+        $this->container['data'] = $data['data'] ?? null;
     }
 
     /**
@@ -223,15 +184,6 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -249,131 +201,25 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets msg
+     * Gets data
      *
-     * @return string|null
+     * @return \Fastly\Model\ValidatorResultData|null
      */
-    public function getMsg()
+    public function getData()
     {
-        return $this->container['msg'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets msg
+     * Sets data
      *
-     * @param string|null $msg msg
+     * @param \Fastly\Model\ValidatorResultData|null $data data
      *
      * @return self
      */
-    public function setMsg($msg)
+    public function setData($data)
     {
-        $this->container['msg'] = $msg;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets errors
-     *
-     * @return string[]|null
-     */
-    public function getErrors()
-    {
-        return $this->container['errors'];
-    }
-
-    /**
-     * Sets errors
-     *
-     * @param string[]|null $errors errors
-     *
-     * @return self
-     */
-    public function setErrors($errors)
-    {
-        $this->container['errors'] = $errors;
-
-        return $this;
-    }
-
-    /**
-     * Gets warnings
-     *
-     * @return string[]|null
-     */
-    public function getWarnings()
-    {
-        return $this->container['warnings'];
-    }
-
-    /**
-     * Sets warnings
-     *
-     * @param string[]|null $warnings warnings
-     *
-     * @return self
-     */
-    public function setWarnings($warnings)
-    {
-        $this->container['warnings'] = $warnings;
-
-        return $this;
-    }
-
-    /**
-     * Gets messages
-     *
-     * @return \Fastly\Model\ValidatorResultMessages[]|null
-     */
-    public function getMessages()
-    {
-        return $this->container['messages'];
-    }
-
-    /**
-     * Sets messages
-     *
-     * @param \Fastly\Model\ValidatorResultMessages[]|null $messages messages
-     *
-     * @return self
-     */
-    public function setMessages($messages)
-    {
-        $this->container['messages'] = $messages;
+        $this->container['data'] = $data;
 
         return $this;
     }
@@ -384,7 +230,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -396,7 +242,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -409,7 +255,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -425,7 +271,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -437,7 +283,7 @@ class ValidatorResult implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

@@ -54,8 +54,8 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'recorded' => 'int',
-        'aggregated' => 'RealtimeMeasurements',
+        'recorded' => '\Fastly\Model\RealtimeEntryRecorded',
+        'aggregated' => '\Fastly\Model\RealtimeEntryAggregated',
         'datacenter' => 'array<string,\Fastly\Model\RealtimeMeasurements>'
     ];
 
@@ -215,7 +215,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets recorded
      *
-     * @return int|null
+     * @return \Fastly\Model\RealtimeEntryRecorded|null
      */
     public function getRecorded()
     {
@@ -225,7 +225,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recorded
      *
-     * @param int|null $recorded The Unix timestamp at which this record's data was generated.
+     * @param \Fastly\Model\RealtimeEntryRecorded|null $recorded recorded
      *
      * @return self
      */
@@ -239,7 +239,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets aggregated
      *
-     * @return RealtimeMeasurements|null
+     * @return \Fastly\Model\RealtimeEntryAggregated|null
      */
     public function getAggregated()
     {
@@ -249,7 +249,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets aggregated
      *
-     * @param RealtimeMeasurements|null $aggregated Aggregates [measurements](#measurements-data-model) across all Fastly POPs.
+     * @param \Fastly\Model\RealtimeEntryAggregated|null $aggregated aggregated
      *
      * @return self
      */
@@ -290,7 +290,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -302,7 +302,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -315,7 +315,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -331,7 +331,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -343,7 +343,7 @@ class RealtimeEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

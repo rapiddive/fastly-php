@@ -56,10 +56,10 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         'action' => 'string',
         'cache_condition' => 'string',
         'name' => 'string',
-        'stale_ttl' => 'int',
-        'ttl' => 'int',
+        'stale_ttl' => 'string',
+        'ttl' => 'string',
         'service_id' => 'string',
-        'version' => 'int',
+        'version' => 'string',
         'created_at' => '\DateTime',
         'deleted_at' => '\DateTime',
         'updated_at' => '\DateTime'
@@ -364,7 +364,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets stale_ttl
      *
-     * @return int|null
+     * @return string|null
      */
     public function getStaleTtl()
     {
@@ -374,7 +374,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets stale_ttl
      *
-     * @param int|null $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as 'stale if error').
+     * @param string|null $stale_ttl Maximum time in seconds to continue to use a stale version of the object if future requests to your backend server fail (also known as 'stale if error').
      *
      * @return self
      */
@@ -388,7 +388,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets ttl
      *
-     * @return int|null
+     * @return string|null
      */
     public function getTtl()
     {
@@ -398,7 +398,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets ttl
      *
-     * @param int|null $ttl Maximum time to consider the object fresh in the cache (the cache 'time to live').
+     * @param string|null $ttl Maximum time to consider the object fresh in the cache (the cache 'time to live').
      *
      * @return self
      */
@@ -436,7 +436,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets version
      *
-     * @return int|null
+     * @return string|null
      */
     public function getVersion()
     {
@@ -446,7 +446,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets version
      *
-     * @param int|null $version version
+     * @param string|null $version version
      *
      * @return self
      */
@@ -535,7 +535,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -547,7 +547,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -560,7 +560,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -576,7 +576,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -588,7 +588,7 @@ class CacheSettingResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

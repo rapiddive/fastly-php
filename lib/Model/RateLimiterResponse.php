@@ -61,7 +61,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'client_key' => 'string[]',
         'penalty_box_duration' => 'int',
         'action' => 'string',
-        'response' => '\Fastly\Model\RateLimiterResponse1',
+        'response' => 'array<string,string>',
         'response_object_name' => 'string',
         'logger_type' => 'string',
         'feature_revision' => 'int',
@@ -779,7 +779,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets response
      *
-     * @return \Fastly\Model\RateLimiterResponse1|null
+     * @return array<string,string>|null
      */
     public function getResponse()
     {
@@ -789,7 +789,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets response
      *
-     * @param \Fastly\Model\RateLimiterResponse1|null $response response
+     * @param array<string,string>|null $response Custom response to be sent when the rate limit is exceeded. Required if `action` is `response`.
      *
      * @return self
      */
@@ -1039,7 +1039,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -1051,7 +1051,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -1064,7 +1064,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -1080,7 +1080,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -1092,7 +1092,7 @@ class RateLimiterResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

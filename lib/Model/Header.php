@@ -56,9 +56,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'string',
         'cache_condition' => 'string',
         'dst' => 'string',
-        'ignore_if_set' => 'int',
         'name' => 'string',
-        'priority' => 'int',
         'regex' => 'string',
         'request_condition' => 'string',
         'response_condition' => 'string',
@@ -78,9 +76,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => null,
         'cache_condition' => null,
         'dst' => null,
-        'ignore_if_set' => null,
         'name' => null,
-        'priority' => null,
         'regex' => null,
         'request_condition' => null,
         'response_condition' => null,
@@ -119,9 +115,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'action',
         'cache_condition' => 'cache_condition',
         'dst' => 'dst',
-        'ignore_if_set' => 'ignore_if_set',
         'name' => 'name',
-        'priority' => 'priority',
         'regex' => 'regex',
         'request_condition' => 'request_condition',
         'response_condition' => 'response_condition',
@@ -139,9 +133,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'setAction',
         'cache_condition' => 'setCacheCondition',
         'dst' => 'setDst',
-        'ignore_if_set' => 'setIgnoreIfSet',
         'name' => 'setName',
-        'priority' => 'setPriority',
         'regex' => 'setRegex',
         'request_condition' => 'setRequestCondition',
         'response_condition' => 'setResponseCondition',
@@ -159,9 +151,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         'action' => 'getAction',
         'cache_condition' => 'getCacheCondition',
         'dst' => 'getDst',
-        'ignore_if_set' => 'getIgnoreIfSet',
         'name' => 'getName',
-        'priority' => 'getPriority',
         'regex' => 'getRegex',
         'request_condition' => 'getRequestCondition',
         'response_condition' => 'getResponseCondition',
@@ -268,9 +258,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['action'] = $data['action'] ?? null;
         $this->container['cache_condition'] = $data['cache_condition'] ?? null;
         $this->container['dst'] = $data['dst'] ?? null;
-        $this->container['ignore_if_set'] = $data['ignore_if_set'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['priority'] = $data['priority'] ?? 100;
         $this->container['regex'] = $data['regex'] ?? null;
         $this->container['request_condition'] = $data['request_condition'] ?? null;
         $this->container['response_condition'] = $data['response_condition'] ?? null;
@@ -404,30 +392,6 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets ignore_if_set
-     *
-     * @return int|null
-     */
-    public function getIgnoreIfSet()
-    {
-        return $this->container['ignore_if_set'];
-    }
-
-    /**
-     * Sets ignore_if_set
-     *
-     * @param int|null $ignore_if_set Don't add the header if it is added already. Only applies to 'set' action.
-     *
-     * @return self
-     */
-    public function setIgnoreIfSet($ignore_if_set)
-    {
-        $this->container['ignore_if_set'] = $ignore_if_set;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -447,30 +411,6 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets priority
-     *
-     * @return int|null
-     */
-    public function getPriority()
-    {
-        return $this->container['priority'];
-    }
-
-    /**
-     * Sets priority
-     *
-     * @param int|null $priority Priority determines execution order. Lower numbers execute first.
-     *
-     * @return self
-     */
-    public function setPriority($priority)
-    {
-        $this->container['priority'] = $priority;
 
         return $this;
     }
@@ -635,7 +575,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -647,7 +587,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -660,7 +600,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -676,7 +616,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -688,7 +628,7 @@ class Header implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

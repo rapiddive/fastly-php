@@ -53,9 +53,9 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'id' => 'string',
-        'user_id' => 'string',
-        'customer_id' => 'string',
+        'id' => '\Fastly\Model\ReadOnlyId',
+        'user_id' => '\Fastly\Model\ReadOnlyUserId',
+        'customer_id' => '\Fastly\Model\ReadOnlyCustomerId',
         'sudo_expires_at' => '\DateTime',
         'created_at' => '\DateTime',
         'access_token' => 'string',
@@ -244,7 +244,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Gets id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyId|null
      */
     public function getId()
     {
@@ -254,7 +254,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param \Fastly\Model\ReadOnlyId|null $id id
      *
      * @return self
      */
@@ -268,7 +268,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Gets user_id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyUserId|null
      */
     public function getUserId()
     {
@@ -278,7 +278,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Sets user_id
      *
-     * @param string|null $user_id user_id
+     * @param \Fastly\Model\ReadOnlyUserId|null $user_id user_id
      *
      * @return self
      */
@@ -292,7 +292,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Gets customer_id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyCustomerId|null
      */
     public function getCustomerId()
     {
@@ -302,7 +302,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
     /**
      * Sets customer_id
      *
-     * @param string|null $customer_id customer_id
+     * @param \Fastly\Model\ReadOnlyCustomerId|null $customer_id customer_id
      *
      * @return self
      */
@@ -439,7 +439,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -451,7 +451,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -464,7 +464,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -480,7 +480,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -492,7 +492,7 @@ class AutomationTokenCreateResponseAllOf implements ModelInterface, ArrayAccess,
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

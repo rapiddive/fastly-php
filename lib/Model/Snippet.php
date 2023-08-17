@@ -54,10 +54,10 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $fastlyTypes = [
         'name' => 'string',
-        'dynamic' => 'int',
+        'dynamic' => 'string',
         'type' => 'string',
         'content' => 'string',
-        'priority' => 'int'
+        'priority' => 'string'
     ];
 
     /**
@@ -176,8 +176,8 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$fastlyModelName;
     }
 
-    const DYNAMIC_0 = 0;
-    const DYNAMIC_1 = 1;
+    const DYNAMIC_regular = '0';
+    const DYNAMIC_dynamic = '1';
     const TYPE_INIT = 'init';
     const TYPE_RECV = 'recv';
     const TYPE_HASH = 'hash';
@@ -198,8 +198,8 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getDynamicAllowableValues()
     {
         return [
-            self::DYNAMIC_0,
-            self::DYNAMIC_1,
+            self::DYNAMIC_regular,
+            self::DYNAMIC_dynamic,
         ];
     }
 
@@ -244,7 +244,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['dynamic'] = $data['dynamic'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['content'] = $data['content'] ?? null;
-        $this->container['priority'] = $data['priority'] ?? 100;
+        $this->container['priority'] = $data['priority'] ?? '100';
     }
 
     /**
@@ -316,7 +316,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets dynamic
      *
-     * @return int|null
+     * @return string|null
      */
     public function getDynamic()
     {
@@ -326,7 +326,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dynamic
      *
-     * @param int|null $dynamic Sets the snippet version.
+     * @param string|null $dynamic Sets the snippet version.
      *
      * @return self
      */
@@ -408,7 +408,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets priority
      *
-     * @return int|null
+     * @return string|null
      */
     public function getPriority()
     {
@@ -418,7 +418,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets priority
      *
-     * @param int|null $priority Priority determines execution order. Lower numbers execute first.
+     * @param string|null $priority Priority determines execution order. Lower numbers execute first.
      *
      * @return self
      */
@@ -435,7 +435,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -447,7 +447,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -460,7 +460,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -476,7 +476,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -488,7 +488,7 @@ class Snippet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

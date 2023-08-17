@@ -53,7 +53,9 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $fastlyTypes = [
-        'tls_certificate' => '\Fastly\Model\RelationshipTlsCertificateTlsCertificate'
+        'tls_certificate' => '\Fastly\Model\RelationshipTlsCertificateTlsCertificate',
+        'tls_configuration' => '\Fastly\Model\RelationshipTlsConfigurationTlsConfiguration',
+        'tls_domain' => '\Fastly\Model\RelationshipTlsDomainTlsDomain'
     ];
 
     /**
@@ -64,7 +66,9 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $fastlyFormats = [
-        'tls_certificate' => null
+        'tls_certificate' => null,
+        'tls_configuration' => null,
+        'tls_domain' => null
     ];
 
     /**
@@ -94,7 +98,9 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'tls_certificate' => 'tls_certificate'
+        'tls_certificate' => 'tls_certificate',
+        'tls_configuration' => 'tls_configuration',
+        'tls_domain' => 'tls_domain'
     ];
 
     /**
@@ -103,7 +109,9 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'tls_certificate' => 'setTlsCertificate'
+        'tls_certificate' => 'setTlsCertificate',
+        'tls_configuration' => 'setTlsConfiguration',
+        'tls_domain' => 'setTlsDomain'
     ];
 
     /**
@@ -112,7 +120,9 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'tls_certificate' => 'getTlsCertificate'
+        'tls_certificate' => 'getTlsCertificate',
+        'tls_configuration' => 'getTlsConfiguration',
+        'tls_domain' => 'getTlsDomain'
     ];
 
     /**
@@ -173,6 +183,8 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->container['tls_certificate'] = $data['tls_certificate'] ?? null;
+        $this->container['tls_configuration'] = $data['tls_configuration'] ?? null;
+        $this->container['tls_domain'] = $data['tls_domain'] ?? null;
     }
 
     /**
@@ -222,6 +234,54 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
 
         return $this;
     }
+
+    /**
+     * Gets tls_configuration
+     *
+     * @return \Fastly\Model\RelationshipTlsConfigurationTlsConfiguration|null
+     */
+    public function getTlsConfiguration()
+    {
+        return $this->container['tls_configuration'];
+    }
+
+    /**
+     * Sets tls_configuration
+     *
+     * @param \Fastly\Model\RelationshipTlsConfigurationTlsConfiguration|null $tls_configuration tls_configuration
+     *
+     * @return self
+     */
+    public function setTlsConfiguration($tls_configuration)
+    {
+        $this->container['tls_configuration'] = $tls_configuration;
+
+        return $this;
+    }
+
+    /**
+     * Gets tls_domain
+     *
+     * @return \Fastly\Model\RelationshipTlsDomainTlsDomain|null
+     */
+    public function getTlsDomain()
+    {
+        return $this->container['tls_domain'];
+    }
+
+    /**
+     * Sets tls_domain
+     *
+     * @param \Fastly\Model\RelationshipTlsDomainTlsDomain|null $tls_domain tls_domain
+     *
+     * @return self
+     */
+    public function setTlsDomain($tls_domain)
+    {
+        $this->container['tls_domain'] = $tls_domain;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -229,7 +289,7 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -241,7 +301,7 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -254,7 +314,7 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -270,7 +330,7 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -282,7 +342,7 @@ class RelationshipsForTlsActivation implements ModelInterface, ArrayAccess, \Jso
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

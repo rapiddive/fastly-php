@@ -61,9 +61,9 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
         'created_at' => '\DateTime',
         'deleted_at' => '\DateTime',
         'updated_at' => '\DateTime',
-        'id' => 'string',
-        'user_id' => 'string',
-        'customer_id' => 'string',
+        'id' => '\Fastly\Model\ReadOnlyId',
+        'user_id' => '\Fastly\Model\ReadOnlyUserId',
+        'customer_id' => '\Fastly\Model\ReadOnlyCustomerId',
         'sudo_expires_at' => '\DateTime',
         'access_token' => 'string',
         'last_used_at' => '\DateTime',
@@ -552,7 +552,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyId|null
      */
     public function getId()
     {
@@ -562,7 +562,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets id
      *
-     * @param string|null $id id
+     * @param \Fastly\Model\ReadOnlyId|null $id id
      *
      * @return self
      */
@@ -576,7 +576,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets user_id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyUserId|null
      */
     public function getUserId()
     {
@@ -586,7 +586,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets user_id
      *
-     * @param string|null $user_id user_id
+     * @param \Fastly\Model\ReadOnlyUserId|null $user_id user_id
      *
      * @return self
      */
@@ -600,7 +600,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets customer_id
      *
-     * @return string|null
+     * @return \Fastly\Model\ReadOnlyCustomerId|null
      */
     public function getCustomerId()
     {
@@ -610,7 +610,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets customer_id
      *
-     * @param string|null $customer_id customer_id
+     * @param \Fastly\Model\ReadOnlyCustomerId|null $customer_id customer_id
      *
      * @return self
      */
@@ -723,7 +723,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -735,7 +735,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -748,7 +748,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -764,7 +764,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -776,7 +776,7 @@ class AutomationTokenCreateResponse implements ModelInterface, ArrayAccess, \Jso
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

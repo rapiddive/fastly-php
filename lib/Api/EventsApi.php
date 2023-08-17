@@ -116,6 +116,9 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $event_id Alphanumeric string identifying an event. (required)
      *
      * @throws \Fastly\ApiException on non-2xx response
@@ -134,6 +137,9 @@ class EventsApi
      * Get an event
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $event_id Alphanumeric string identifying an event. (required)
      *
@@ -242,6 +248,9 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $event_id Alphanumeric string identifying an event. (required)
      *
      * @throws \InvalidArgumentException
@@ -263,6 +272,9 @@ class EventsApi
      * Get an event
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $event_id Alphanumeric string identifying an event. (required)
      *
@@ -311,6 +323,9 @@ class EventsApi
      * Create request for operation 'getEvent'
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
      *
      * @param  string $event_id Alphanumeric string identifying an event. (required)
      *
@@ -401,10 +416,16 @@ class EventsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -417,11 +438,15 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_customer_id Limit the results returned to a specific customer. (optional)
      * @param  string $filter_event_type Limit the returned events to a specific &#x60;event_type&#x60;. (optional)
      * @param  string $filter_service_id Limit the results returned to a specific service. (optional)
      * @param  string $filter_user_id Limit the results returned to a specific user. (optional)
      * @param  string $filter_token_id Limit the returned events to a specific token. (optional)
+     * @param  string $filter_created_at Limit the returned events to a specific time frame. Accepts sub-parameters: lt, lte, gt, gte (e.g., filter[created_at][gt]&#x3D;2022-01-12). (optional)
      * @param  int $page_number Current page. (optional)
      * @param  int $page_size Number of records per page. (optional, default to 20)
      * @param  string $sort The order in which to list the results by creation date. (optional, default to 'created_at')
@@ -443,11 +468,15 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains Fastly API host(s). Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_customer_id Limit the results returned to a specific customer. (optional)
      * @param  string $filter_event_type Limit the returned events to a specific &#x60;event_type&#x60;. (optional)
      * @param  string $filter_service_id Limit the results returned to a specific service. (optional)
      * @param  string $filter_user_id Limit the results returned to a specific user. (optional)
      * @param  string $filter_token_id Limit the returned events to a specific token. (optional)
+     * @param  string $filter_created_at Limit the returned events to a specific time frame. Accepts sub-parameters: lt, lte, gt, gte (e.g., filter[created_at][gt]&#x3D;2022-01-12). (optional)
      * @param  int $page_number Current page. (optional)
      * @param  int $page_size Number of records per page. (optional, default to 20)
      * @param  string $sort The order in which to list the results by creation date. (optional, default to 'created_at')
@@ -557,11 +586,15 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_customer_id Limit the results returned to a specific customer. (optional)
      * @param  string $filter_event_type Limit the returned events to a specific &#x60;event_type&#x60;. (optional)
      * @param  string $filter_service_id Limit the results returned to a specific service. (optional)
      * @param  string $filter_user_id Limit the results returned to a specific user. (optional)
      * @param  string $filter_token_id Limit the returned events to a specific token. (optional)
+     * @param  string $filter_created_at Limit the returned events to a specific time frame. Accepts sub-parameters: lt, lte, gt, gte (e.g., filter[created_at][gt]&#x3D;2022-01-12). (optional)
      * @param  int $page_number Current page. (optional)
      * @param  int $page_size Number of records per page. (optional, default to 20)
      * @param  string $sort The order in which to list the results by creation date. (optional, default to 'created_at')
@@ -586,11 +619,15 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_customer_id Limit the results returned to a specific customer. (optional)
      * @param  string $filter_event_type Limit the returned events to a specific &#x60;event_type&#x60;. (optional)
      * @param  string $filter_service_id Limit the results returned to a specific service. (optional)
      * @param  string $filter_user_id Limit the results returned to a specific user. (optional)
      * @param  string $filter_token_id Limit the returned events to a specific token. (optional)
+     * @param  string $filter_created_at Limit the returned events to a specific time frame. Accepts sub-parameters: lt, lte, gt, gte (e.g., filter[created_at][gt]&#x3D;2022-01-12). (optional)
      * @param  int $page_number Current page. (optional)
      * @param  int $page_size Number of records per page. (optional, default to 20)
      * @param  string $sort The order in which to list the results by creation date. (optional, default to 'created_at')
@@ -641,11 +678,15 @@ class EventsApi
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
+     * URL: https://api.fastly.com
+     *
      * @param  string $filter_customer_id Limit the results returned to a specific customer. (optional)
      * @param  string $filter_event_type Limit the returned events to a specific &#x60;event_type&#x60;. (optional)
      * @param  string $filter_service_id Limit the results returned to a specific service. (optional)
      * @param  string $filter_user_id Limit the results returned to a specific user. (optional)
      * @param  string $filter_token_id Limit the returned events to a specific token. (optional)
+     * @param  string $filter_created_at Limit the returned events to a specific time frame. Accepts sub-parameters: lt, lte, gt, gte (e.g., filter[created_at][gt]&#x3D;2022-01-12). (optional)
      * @param  int $page_number Current page. (optional)
      * @param  int $page_size Number of records per page. (optional, default to 20)
      * @param  string $sort The order in which to list the results by creation date. (optional, default to 'created_at')
@@ -661,6 +702,7 @@ class EventsApi
         $filter_service_id = array_key_exists('filter_service_id', $options) ? $options['filter_service_id'] : null;
         $filter_user_id = array_key_exists('filter_user_id', $options) ? $options['filter_user_id'] : null;
         $filter_token_id = array_key_exists('filter_token_id', $options) ? $options['filter_token_id'] : null;
+        $filter_created_at = array_key_exists('filter_created_at', $options) ? $options['filter_created_at'] : null;
         $page_number = array_key_exists('page_number', $options) ? $options['page_number'] : null;
         $page_size = array_key_exists('page_size', $options) ? $options['page_size'] : 20;
         $sort = array_key_exists('sort', $options) ? $options['sort'] : 'created_at';
@@ -733,6 +775,17 @@ class EventsApi
             }
             else {
                 $queryParams['filter[token_id]'] = ObjectSerializer::toString($filter_token_id);
+            }
+        }
+        // query params
+        if ($filter_created_at !== null) {
+            if('form' === 'form' && is_array($filter_created_at)) {
+                foreach($filter_created_at as $key => $value) {
+                    $queryParams[$key] = ObjectSerializer::toString($value);
+                }
+            }
+            else {
+                $queryParams['filter[created_at]'] = ObjectSerializer::toString($filter_created_at);
             }
         }
         // query params
@@ -825,10 +878,16 @@ class EventsApi
             $headers
         );
 
+        $operationHosts = ["https://api.fastly.com"];
+        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
+            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
+        }
+        $operationHost = $operationHosts[$this->hostIndex];
+
         $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

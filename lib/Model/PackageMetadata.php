@@ -59,7 +59,8 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'authors' => 'string[]',
         'language' => 'string',
         'size' => 'int',
-        'hashsum' => 'string'
+        'hashsum' => 'string',
+        'files_hash' => 'string'
     ];
 
     /**
@@ -75,7 +76,8 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'authors' => null,
         'language' => null,
         'size' => null,
-        'hashsum' => null
+        'hashsum' => null,
+        'files_hash' => null
     ];
 
     /**
@@ -110,7 +112,8 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'authors' => 'authors',
         'language' => 'language',
         'size' => 'size',
-        'hashsum' => 'hashsum'
+        'hashsum' => 'hashsum',
+        'files_hash' => 'files_hash'
     ];
 
     /**
@@ -124,7 +127,8 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'authors' => 'setAuthors',
         'language' => 'setLanguage',
         'size' => 'setSize',
-        'hashsum' => 'setHashsum'
+        'hashsum' => 'setHashsum',
+        'files_hash' => 'setFilesHash'
     ];
 
     /**
@@ -138,7 +142,8 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         'authors' => 'getAuthors',
         'language' => 'getLanguage',
         'size' => 'getSize',
-        'hashsum' => 'getHashsum'
+        'hashsum' => 'getHashsum',
+        'files_hash' => 'getFilesHash'
     ];
 
     /**
@@ -204,6 +209,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['language'] = $data['language'] ?? null;
         $this->container['size'] = $data['size'] ?? null;
         $this->container['hashsum'] = $data['hashsum'] ?? null;
+        $this->container['files_hash'] = $data['files_hash'] ?? null;
     }
 
     /**
@@ -373,6 +379,30 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
+    /**
+     * Gets files_hash
+     *
+     * @return string|null
+     */
+    public function getFilesHash()
+    {
+        return $this->container['files_hash'];
+    }
+
+    /**
+     * Sets files_hash
+     *
+     * @param string|null $files_hash Hash of the files within the Compute@Edge package.
+     *
+     * @return self
+     */
+    public function setFilesHash($files_hash)
+    {
+        $this->container['files_hash'] = $files_hash;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -380,7 +410,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -392,7 +422,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -405,7 +435,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -421,7 +451,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -433,7 +463,7 @@ class PackageMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }

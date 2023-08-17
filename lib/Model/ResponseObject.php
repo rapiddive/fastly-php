@@ -57,7 +57,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'string',
         'content_type' => 'string',
         'name' => 'string',
-        'status' => 'int',
+        'status' => 'string',
         'response' => 'string',
         'request_condition' => 'string'
     ];
@@ -206,7 +206,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['content'] = $data['content'] ?? null;
         $this->container['content_type'] = $data['content_type'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
-        $this->container['status'] = $data['status'] ?? 200;
+        $this->container['status'] = $data['status'] ?? '200';
         $this->container['response'] = $data['response'] ?? 'Ok';
         $this->container['request_condition'] = $data['request_condition'] ?? null;
     }
@@ -334,7 +334,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return int|null
+     * @return string|null
      */
     public function getStatus()
     {
@@ -344,7 +344,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param int|null $status The HTTP status code.
+     * @param string|null $status The HTTP status code.
      *
      * @return self
      */
@@ -409,7 +409,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -421,7 +421,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -434,7 +434,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -450,7 +450,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -462,7 +462,7 @@ class ResponseObject implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
        return ObjectSerializer::sanitizeForSerialization($this);
     }
